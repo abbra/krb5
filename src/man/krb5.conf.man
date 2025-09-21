@@ -650,6 +650,19 @@ primary KDC, in case the user\(aqs password has just been changed, and
 the updated database has not been propagated to the replica
 servers yet.  New in release 1.19.
 .TP
+\fBauto_fast_armor\fP
+If this flag is true, then initial ticket request will use Anonymous
+PKINIT to protect the communication as a FAST channel in case an application
+did not provide its own FAST channel.This is useful for deployments where
+pre-authentication methods require use of the FAST channel, such as
+passwordless methods provided by FreeIPA. Microsoft Active Directory
+implementation of PKINIT does not support Anonymous PKINIT feature.
+As a result, \fIauto_fast_armor\fP defaults to false.
+.sp
+Use of \fIauto_fast_armor = true\fP requires properly configured PKINIT and
+WELLKNOWN/ANONYMOUS principal defined on the KDC side. Consult KDC documentation
+for details.
+.TP
 \fBv4_instance_convert\fP
 This subsection allows the administrator to configure exceptions
 to the \fBdefault_domain\fP mapping rule.  It contains V4 instances
